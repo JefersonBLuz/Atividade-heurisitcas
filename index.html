@@ -1,28 +1,82 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"></script>
     <title>Dashboard Simples</title>
 </head>
-<body>
+
+<body class="ligh">
     <header>
-        <h1>Dashboard Simples</h1>
+
+        <nav class="configuracoes">
+            <ul style="margin: 2px 0px;text-align: end; z-index: 1;">
+                <li data-tooltip="Alterar Tema" onclick="changThemer()" onmouseover="themerMsg()"
+                    onmouseout="themerMsgOut()"><a><i class="nf nf-oct-moon" id="themer"></i></a></li>
+                <!-- <span id="themerMsg" >Alterar modo da página</span> -->
+                <li data-tooltip="Abrir Configurações" onclick="openConfig()"><a><i class="nf nf-fa-gear"></i></a></li>
+                <li data-tooltip="Reiniciar página"><a href="index.html"><i class="nf nf-md-logout"></i></a></li>
+            </ul>
+            <!-- <div style="display: flex; z-index: 800; justify-content: flex-end;"><span id="themerMsg" >Alterar modo da página</span></div> -->
+        </nav>
+        <h1 style=" margin-top: 0px;">Dashboard Simples</h1>
         <nav>
             <ul>
-                <li><a href="#home">Início</a></li>
+                <li><span data-inicio="Teste"><a href="#home">Início</a></span></li>
                 <li><a href="#relatorios">Relatórios</a></li>
-                <li><a href="#configuracoes">Configurações</a></li>
+                <li><a href="#configuracoes">Credenciais</a></li>
                 <li><a href="#perfil">Perfil</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
+        <section id="configDisplay" style="display: none;">
+            <h2>Configurações</h2>
+            <div>
+                <p>
+                    Informe o tamanho do texto desejado:
+                    <select id="selectSize">
+                        <option value="">Selecione...</option>
+                        <option value="1">12px</option>
+                        <option value="2">14px</option>
+                        <option value="3">16px</option>
+                        <option value="4">18px</option>
+                    </select>
+                </p>
+                <p>
+                    Informe o tipo de fonte desejada:
+                    <select id="selectFontFamilly">
+                        <option value="">Selecione...</option>
+                        <option value="1" style="font-family: Arial;">Arial</option>
+                        <option value="2" style="font-family: Courier New;">Courier New</option>
+                        <option value="3" style="font-family: Helvetica;">Helvetica</option>
+                        <option value="4" style="font-family: sans-serif;">sans-serif</option>
+                    </select>
+                </p>
+                <!-- <p>
+                    Informe o layout desejado:
+                    <select id="selectFontFamilly">
+                        <option value="">Selecione...</option>
+                        <option value="1" style="background-color: var(--linear-backgour);">Roxo</option>
+                        <option value="2" style="background-color: var(--linear-backgour-2);">Amarelo</option>
+                        <option value="3" style="background-color: var(--linear-backgour-3);">Verde</option>
+                        <option value="4" style="background-color: var(--linear-backgour-4);">Vermelho</option>
+                    </select>
+                </p> -->
+            </div>
+            <div style="text-align: end; margin: 10px;">
+                <button type="button" onclick="closedConfig()"
+                    style="box-shadow: 0 0 5px rgba(245, 0, 0, 0.25);">Cancelar</button>
+                <button type="button" onclick="saveConfig()"
+                    style="box-shadow: 0 0 5px rgba(30, 255, 0, 0.25);">Salvar</button>
+            </div>
+        </section>
         <section id="home">
             <h2>Bem-vindo ao Dashboard</h2>
-            <p>Visão geral dos dados importantes.</p>
             <div class="cards">
                 <div class="card">
                     <h3>Usuários Ativos</h3>
@@ -41,20 +95,19 @@
 
         <section id="relatorios">
             <h2>Relatórios</h2>
-            <p>Selecione um relatório para visualizar:</p>
-            <select>
-                <option value="">Selecione...</option>
-                <option value="vendas">Vendas</option>
-                <option value="usuarios">Usuários</option>
-            </select>
-            <button type="button">Gerar Relatório</button>
-            <div class="report-output">
-                <!-- Saída do relatório aparecerá aqui -->
-            </div>
+            <p>Selecione um relatório para visualizar:
+                <select id="relatorio">
+                    <option value="">Selecione...</option>
+                    <option value="vendas">Vendas</option>
+                    <option value="usuarios">Usuários</option>
+                </select>
+                <button type="button" onclick="alertRelatorio()"><i class="nf nf-oct-download"></i> Relatório</button>
+            </p>
+            <div id="avisoDiv"></div>
         </section>
 
         <section id="configuracoes">
-            <h2>Configurações</h2>
+            <h2>Credenciais</h2>
             <form>
                 <label for="email">E-mail:</label>
                 <input type="email" id="email" name="email" placeholder="Digite seu e-mail">
@@ -62,20 +115,49 @@
                 <label for="senha">Senha:</label>
                 <input type="password" id="senha" name="senha" placeholder="Digite sua senha">
 
-                <button type="submit">Salvar Configurações</button>
+                <button type="button" onclick="saveCredenciais()">Salvar Credenciais</button>
             </form>
+            <div id="email-alert">
+            </div>
         </section>
 
         <section id="perfil">
             <h2>Perfil do Usuário</h2>
             <p>Nome: <span id="usuario-nome">João Silva</span></p>
             <p>E-mail: <span id="usuario-email">joao@exemplo.com</span></p>
-            <button type="button">Editar Perfil</button>
+            <button type="button" id="button-profile" style="display: block;" onclick="openEditProfile()">Editar
+                Perfil</button>
+            <div id="editProfile" style="display: none;">
+                <form id="formEditPerfil">
+                    <p>
+                        <label for="nome-edit">Informe o nome:</label>
+                        <input id="nome-edit" type="text"
+                            style="border: initial; border-bottom: solid 1px rgb(0, 0, 0); border-radius: 0;">
+
+                    </p>
+                    <p>
+                        <label for="email-edit">Informe o email:</label>
+                        <input id="email-edit" type="email"
+                            style="border: initial; border-bottom: solid 1px rgb(0, 0, 0); border-radius: 0;">
+
+                    </p>
+                </form>
+                <p id="avisoProfile"></p>
+                <div style="text-align: end; margin: 10px;">
+                    <button type="button" onclick="closedEditProfile()"
+                        style="background-color: rgb(204, 47, 47);">Cancelar</button>
+                    <button type="button" onclick="saveProfile()"
+                        style="background-color: rgb(52, 114, 52);">Salvar</button>
+                </div>
+            </div>
+            </div>
         </section>
     </main>
 
     <footer>
         <p>&copy; 2024 Dashboard Simples</p>
     </footer>
+    <script src="assets/js/script.js"></script>
 </body>
+
 </html>

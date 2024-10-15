@@ -1,4 +1,5 @@
 # Atividade: Implementação das Heurísticas de Usabilidade no Dashboard
+Unidade Curricular Interface Homem-Computador
 
 ## Objetivo
 Melhorar a usabilidade de um dashboard seguindo as 10 heurísticas de usabilidade de Nielsen.

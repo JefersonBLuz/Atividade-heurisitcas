@@ -1,0 +1,202 @@
+@import "https://www.nerdfonts.com/assets/css/webfont.css";
+
+:root {
+    --backgroud-light-principal: #f4f4f4;
+    --white: #fff;
+    --background-dark-principal: rgb(59, 59, 59);
+    --background-dark-secundaria: #333;
+    --linear-backgour: linear-gradient(270deg, rgb(40, 40, 122), rgb(91, 91, 146));
+    --linear-backgour-2: linear-gradient(270deg, rgb(183, 202, 8), rgb(146, 145, 91));
+    --linear-backgour-3: linear-gradient(270deg, rgb(37, 173, 33), rgb(66, 165, 144));
+    --linear-backgour-4: linear-gradient(270deg, rgb(126, 26, 26), rgb(202, 66, 95));
+    --linear-backgour-dark: linear-gradient(270deg, rgb(40, 40, 122), rgb(114, 114, 190));
+}
+
+[data-tooltip] {
+    position: relative;
+    font-weight: bold;
+  }
+  
+  [data-tooltip]:after {
+    display: none;
+    position: absolute;
+    font-size: 12px;
+    top: 100%;
+    padding: 5px;
+    border-radius: 10px;
+    right: calc(100% + 2px);
+    content: attr(data-tooltip);
+    white-space: nowrap;
+    background-color: plum;
+    border: solid 0.5px rgba(0, 0, 255, 0.178);
+    color: var(--background-dark-secundaria);
+  }
+  
+  [data-tooltip]:hover:after {
+    display: block;
+  }
+.dark {
+    color: #fff;
+
+    & main {
+        background-color: var(--background-dark-secundaria);
+    }
+
+    & .card {
+        background-color: var(--background-dark-secundaria);
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.171);
+    }
+
+    & .cards {
+        background-color: var(--background-dark-principal);
+    }
+
+    & section {
+        background-color: var(--background-dark-principal);
+    }
+
+    & input,
+    button,
+    select {
+        background-color: var(--background-dark-secundaria);
+        border: solid 1px var(--white);
+        color: #f4f4f4;
+    }
+
+    & button:hover {
+        background-color: var(--white);
+        color: rgb(59, 59, 59);
+    }
+
+    & .noticeReport,
+    #avisoDiv p {
+        color: var(--backgroud-light-principal);
+    }
+}
+
+#themerMsg {
+    display: block;
+    position: absolute;
+    left: 0;
+    /* right: ; */
+    margin: 10px;
+    /* z-index: 9000; */
+    justify-content: flex-end;
+    padding: 2px;
+    color: var(--background-dark-principal);
+    width: max-content;
+    background-color: #f4f4f4;
+    font-size:8pt;
+}
+
+.noticeReport,
+#avisoDiv p {
+    color: var(--background-dark-principal);
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--backgroud-light-principal);
+}
+.configuracoes ul li{
+    padding: 5px;
+    margin: 3px;
+    text-align: center;
+    align-content:center;
+    cursor: pointer;
+}
+input,
+button,
+select {
+    background-color: var(--background-light-secundaria);
+    border-radius: 12px;
+    padding: 5px 10px;
+    border: solid 1px #333;
+    cursor: pointer;
+}
+
+#report-output,
+#report-successfull {
+    font-family: Arial, sans-serif;
+    padding: 10px 0px 0px 0px;
+    color: #333;
+}
+
+header {
+    background: var(--linear-backgour);
+    padding: 10px 0;
+    text-align: center;
+    color: #fff;
+}
+
+button:hover {
+    background-color: rgb(59, 59, 59);
+    color: var(--white);
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+    padding: 5px 6px;
+    border-radius: 15px;
+    color: #fff;
+    border: solid 2px rgba(245, 245, 220, 0);
+}
+
+li:hover {
+    background-color: plum;
+    border: solid 2px rgba(0, 0, 255, 0.178);
+
+    a {
+        color: #333;
+    }
+}
+
+nav a {
+    color: var(--white);
+    text-decoration: none;
+}
+
+main {
+    padding: 20px;
+    background-color: none;
+}
+
+.cards {
+    display: flex;
+    justify-content: space-around;
+}
+
+.card {
+    background: var(--white);
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    text-align: center;
+}
+
+section {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+    text-align: center;
+    padding: 15px 0;
+    background: var(--linear-backgour);
+    color: #fff;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
