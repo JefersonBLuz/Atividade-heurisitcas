@@ -132,6 +132,10 @@ function openEditProfile(){
 function closedEditProfile(){
     buttonEdit.style.display = 'block'
     profile.style.display = 'none'
+    let form = document.getElementById('formEditPerfil')
+    let alerta = document.getElementById('avisoProfile')
+    alerta.innerHTML = null
+    form.reset()
 }
 function saveProfile(){
     let nomeActual = document.getElementById('usuario-nome')
